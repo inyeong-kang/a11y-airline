@@ -1,5 +1,5 @@
-import React, { useState, MouseEvent } from "react";
-import "./SpinButton.css";
+import React, { useState, MouseEvent } from 'react';
+import './SpinButton.css';
 
 const SpinButton: React.FC = () => {
   const [count, setCount] = useState<number>(0);
@@ -18,33 +18,44 @@ const SpinButton: React.FC = () => {
   };
 
   return (
-    <section className="spinButtonContainer">
+    <section className='spinButtonContainer'>
       <div>
         <h1>승객 선택</h1>
-        <div className="spinButtonLabel">
+        <div className='spinButtonLabel'>
           <label>성인</label>
           <div
-            className="helpIcon"
+            className='helpIcon'
             onMouseEnter={toggleTooltip}
             onMouseLeave={toggleTooltip}
           >
             ?
             {isTooltipVisible && (
-              <span className="tooltip">최대 인원수는 3명까지 가능합니다</span>
+              <span className='tooltip'>최대 인원수는 3명까지 가능합니다</span>
             )}
           </div>
         </div>
-        <button onClick={decrement} className="spinButton">
+        <button
+          aria-label='성인 탑승자 한명 줄이기'
+          aria-disabled={count === 0 ? 'true' : 'false'}
+          onClick={decrement}
+          className='spinButton'
+        >
           -
         </button>
         <input
-          type="text"
-          role="spinbutton"
+          aria-label={`성인 ${count} 텍스트 숫자만 수정`}
+          type='text'
+          role='spinbutton'
           readOnly
-          className="spinButtonInput"
+          className='spinButtonInput'
           value={count}
         />
-        <button onClick={increment} className="spinButton">
+        <button
+          aria-label='성인 탑승자 한명 늘리기'
+          aria-disabled={count === 3 ? 'true' : 'false'}
+          onClick={increment}
+          className='spinButton'
+        >
           +
         </button>
       </div>
