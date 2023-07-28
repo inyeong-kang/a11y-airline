@@ -53,7 +53,7 @@ const SpinButton: React.FC = () => {
         <button
           aria-label='성인 탑승자 한명 늘리기'
           aria-disabled={count === 3 ? 'true' : 'false'}
-          aria-live={`성인 승객 추가 ${count + 1}`}
+          aria-live='assertive'
           onClick={increment}
           className='spinButton'
         >
