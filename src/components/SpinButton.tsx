@@ -43,7 +43,7 @@ const SpinButton: React.FC = () => {
           -
         </button>
         <input
-          aria-label={`성인 ${count} 텍스트 숫자만 수정`}
+          aria-label={`성인 ${count === 1} 텍스트 숫자만 수정`}
           type='text'
           role='spinbutton'
           readOnly
@@ -53,6 +53,7 @@ const SpinButton: React.FC = () => {
         <button
           aria-label='성인 탑승자 한명 늘리기'
           aria-disabled={count === 3 ? 'true' : 'false'}
+          aria-live={`성인 승객 추가 ${count + 1}`}
           onClick={increment}
           className='spinButton'
         >
