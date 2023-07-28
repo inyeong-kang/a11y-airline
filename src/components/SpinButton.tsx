@@ -7,6 +7,7 @@ const SpinButton: React.FC = () => {
 
   const increment = () => {
     setCount((prevCount) => prevCount + 1);
+    announceMessage(`성인 탑승 ${count + 1}명 추가`);
   };
 
   const decrement = () => {
@@ -15,6 +16,19 @@ const SpinButton: React.FC = () => {
 
   const toggleTooltip = (event: MouseEvent<HTMLDivElement>) => {
     setIsTooltipVisible(!isTooltipVisible);
+  };
+
+  const announceMessage = (message: string) => {
+    const screenReaderElement = document.createElement('div');
+    screenReaderElement.setAttribute('aria-live', 'assertive');
+    screenReaderElement.setAttribute('aria-atomic', 'true');
+    screenReaderElement.innerText = message;
+    document.body.appendChild(screenReaderElement);
+
+    // 스크린 리더가 메시지를 읽은 후 해당 엘리먼트를 제거하여 화면에 보이지 않도록 함
+    setTimeout(function () {
+      document.body.removeChild(screenReaderElement);
+    }, 1000);
   };
 
   return (
@@ -53,7 +67,6 @@ const SpinButton: React.FC = () => {
         <button
           aria-label='성인 탑승자 한명 늘리기'
           aria-disabled={count === 3 ? 'true' : 'false'}
-          aria-live='assertive'
           onClick={increment}
           className='spinButton'
         >
